@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Commander.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -30,6 +31,10 @@ namespace Commander
         {
 
             services.AddControllers();
+
+            //whenever our app ask for on of this, get it, if we want to change, we change just the implementation
+            services.AddScoped<ICommanderRepo, MockCommanderRepo>();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Commander", Version = "v1" });
