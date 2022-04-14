@@ -36,7 +36,7 @@ namespace Commander
             services.AddControllers();
 
             //whenever our app ask for on of this, get it, if we want to change, we change just the implementation
-            services.AddScoped<ICommanderRepo, MockCommanderRepo>();
+            services.AddScoped<ICommanderRepo, SqlCommanderRepo>();
 
             services.AddSwaggerGen(c =>
             {
