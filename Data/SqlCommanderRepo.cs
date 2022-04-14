@@ -1,3 +1,5 @@
+//it's the repositary to read/write data from controller to DB Context
+
 using System.Collections.Generic;
 using System.Linq;
 using Commander.Models;

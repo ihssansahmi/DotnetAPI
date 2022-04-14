@@ -38,6 +38,7 @@ namespace Commander
             //whenever our app ask for on of this, get it, if we want to change, we change just the implementation
             services.AddScoped<ICommanderRepo, SqlCommanderRepo>();
 
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Commander", Version = "v1" });
