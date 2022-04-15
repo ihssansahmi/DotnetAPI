@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json.Serialization;
 namespace Commander
 {
     public class Startup
@@ -33,7 +34,9 @@ namespace Commander
             //use MySql provider and our context class with the connection string from appsettings.json
             services.AddDbContext<CommanderContext>(opt => opt.UseMySql(dbConnectionString, ServerVersion.AutoDetect(dbConnectionString)));
 
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(s => {
+                s.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            });
 
             //whenever our app ask for on of this, get it, if we want to change, we change just the implementation
             services.AddScoped<ICommanderRepo, SqlCommanderRepo>();
