@@ -62,6 +62,7 @@ namespace Commander.controllers
         }
 
         //PUT api/commands/{id}
+        //needs to replace an existing Resource entirely
         [HttpPut("{id}")]
         public ActionResult UpdateCommand(int id, CommandUpdateDto commandUpdateDto)
         {
@@ -82,6 +83,7 @@ namespace Commander.controllers
         }
 
         //PATCH api/command/{id}
+        //doing a partial update
         [HttpPatch("{id}")]
         public ActionResult PartialCommandUpdate(int id, JsonPatchDocument<CommandUpdateDto> patchDoc)
         {
@@ -121,7 +123,7 @@ namespace Commander.controllers
             }
 
             _repository.DeleteCommand(commandModelFromRepo);
-            
+
             _repository.SaveChanges();
 
             return NoContent();
